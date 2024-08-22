@@ -12,6 +12,7 @@ body {
   align-items: center;
   background-color: #1a1a1a;
   overflow: hidden; 
+  font-family: 'Cabin';
 }
 
 .container {
