@@ -79,7 +79,7 @@ function Login() {
             logo={<img src={process.env.PUBLIC_URL + '/Glogin.png'} alt="Google Sign-In" className="button1" />}
           />
           <br /><br />
-          <img src={process.env.PUBLIC_URL + '/seperater.png'} alt="Separator" className="separator" />
+          <img src={process.env.PUBLIC_URL + '/Seperater.png'} alt="Separator" className="separator" />
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
