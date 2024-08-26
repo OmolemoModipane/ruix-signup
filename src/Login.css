@@ -17,9 +17,9 @@ body {
 
 .container {
   display: flex;
-  width: 200%; /* Container now takes up 200% of the viewport width */
+  width: 350%; /* Container now takes up 200% of the viewport width */
   height: 100%;
-  transform: translateX(-25%); /* Move the container left by 25% to center it */
+  transform: translateX(-35%); /* Move the container left by 25% to center it */
 }
 
 .Left-content {
@@ -65,8 +65,8 @@ body {
   width: 100%;
 }
 
-.button {
-  width: 60%;
+.button1 {
+  width: 10%;
   margin-bottom: 2rem;
   cursor: pointer;
   

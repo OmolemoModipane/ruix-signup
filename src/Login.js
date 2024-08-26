@@ -1,5 +1,7 @@
+// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { GoogleLogin } from '@react-oauth/google';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -20,9 +22,9 @@ function Login() {
     e.preventDefault();
     try {
       // Send a POST request to the backend for registration
-      const response = await axios.post('http://localhost:5001/register', formData);
+      const response = await axios.post('https://signup-backend-intf.onrender.com/register', formData);
       
-      // You can handle successful registration here
+      // Handle successful registration
       console.log('Registration successful', response.data);
 
       // Clear form data and error
@@ -32,10 +34,29 @@ function Login() {
       // Optionally redirect the user or show a success message
       alert('Registration successful! You can now log in.');
     } catch (err) {
-      // Handle any errors that occur during registration
+      // Handle errors during registration
       console.error('Error registering user', err.response.data);
       setError(err.response.data.message);
     }
+  };
+
+  const handleGoogleSuccess = async (response) => {
+    const token = response.credential;
+    console.log('Google token:', token);
+
+    try {
+      const res = await axios.post('https://signup-backend-intf.onrender.com/auth/google', { token });
+      console.log('Google authentication successful:', res.data);
+      // Handle successful Google authentication
+    } catch (err) {
+      console.error('Error during Google authentication:', err.response.data);
+      setError(err.response.data.message);
+    }
+  };
+
+  const handleGoogleError = (error) => {
+    console.error('Google login error:', error);
+    setError('Google login failed. Please try again.');
   };
 
   return (
@@ -52,7 +73,11 @@ function Login() {
         
         <div className="login-details">
           <br /><br />
-          <img src={process.env.PUBLIC_URL + '/Glogin.png'} alt="Button" className="button" />
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            logo={<img src={process.env.PUBLIC_URL + '/Glogin.png'} alt="Google Sign-In" className="button1" />}
+          />
           <br /><br />
           <img src={process.env.PUBLIC_URL + '/seperater.png'} alt="Separator" className="separator" />
           <form onSubmit={handleSubmit}>
