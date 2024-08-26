@@ -146,3 +146,14 @@ form span {
     width: 100%;
   }
 }
+
+.google-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.google-button {
+  cursor: pointer;
+  width: 200px; /* Adjust width as needed */
+}

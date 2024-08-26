@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
+import './Login.css'; // Import your CSS file for styling
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -75,11 +76,21 @@ function Login() {
         
         <div className="login-details">
           <br /><br />
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleError}
-            logo={<img src={process.env.PUBLIC_URL + '/Glogin.png'} alt="Google Sign-In" className="button1" />}
-          />
+          <div className="google-button-wrapper">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              render={(renderProps) => (
+                <img
+                  src={process.env.PUBLIC_URL + '/Glogin.png'}
+                  alt="Google Sign-In"
+                  className="google-button"
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                />
+              )}
+            />
+          </div>
           <br /><br />
           <img src={process.env.PUBLIC_URL + '/Seperater.png'} alt="Separator" className="separator" />
           <form onSubmit={handleSubmit}>
@@ -128,3 +139,4 @@ function Login() {
 }
 
 export default Login;
+
