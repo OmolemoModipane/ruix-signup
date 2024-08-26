@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
@@ -35,8 +34,9 @@ function Login() {
       alert('Registration successful! You can now log in.');
     } catch (err) {
       // Handle errors during registration
-      console.error('Error registering user', err.response.data);
-      setError(err.response.data.message);
+      const errorMessage = err.response?.data?.message || 'An error occurred';
+      console.error('Error registering user:', errorMessage);
+      setError(errorMessage);
     }
   };
 
@@ -49,8 +49,10 @@ function Login() {
       console.log('Google authentication successful:', res.data);
       // Handle successful Google authentication
     } catch (err) {
-      console.error('Error during Google authentication:', err.response.data);
-      setError(err.response.data.message);
+      // Handle errors during Google authentication
+      const errorMessage = err.response?.data?.message || 'An error occurred';
+      console.error('Error during Google authentication:', errorMessage);
+      setError(errorMessage);
     }
   };
 
